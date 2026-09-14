@@ -1,0 +1,5 @@
+<!doctype html><html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head><title>Chi tiết danh mục</title></head><body><main layout:fragment="content" class="container page" id="main-content">
+  <a class="back-link" th:href="@{/admin/categories}">← Danh sách danh mục</a><div class="eyebrow mt-4">THÔNG TIN DANH MỤC</div><h1>Chi tiết danh mục<span class="accent">.</span></h1>
+  <section class="workspace form-panel"><dl><dt>Mã danh mục</dt><dd class="category-id" th:text="${'#' + category.categoryId}"></dd><dt>Tên danh mục</dt><dd class="detail-name" th:text="${category.name}"></dd></dl><div class="form-actions"><a class="btn btn-light" th:href="@{/admin/categories}">Quay lại</a><a class="btn btn-primary" th:href="@{/admin/categories/edit/{id}(id=${category.categoryId})}">Sửa danh mục</a></div></section>
+</main></body></html>

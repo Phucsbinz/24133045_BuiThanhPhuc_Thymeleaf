@@ -1,0 +1,28 @@
+<!doctype html><html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head><title>Quản lý danh mục</title></head><body>
+<main layout:fragment="content" class="container page" id="main-content">
+  <div class="eyebrow">KHÔNG GIAN QUẢN LÝ</div>
+  <div class="page-heading"><div><h1>Danh mục<span class="accent">.</span></h1><p>Sắp xếp danh mục, tìm kiếm và cập nhật trong một nơi.</p></div><a class="btn btn-primary" th:href="@{/admin/categories/add}"><span aria-hidden="true">＋</span> Thêm danh mục</a></div>
+  <div th:if="${message}" class="alert alert-success" role="status" th:text="${message}"></div>
+  <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+  <section class="workspace" aria-label="Danh sách danh mục">
+    <div class="workspace-top"><div><h2>Tất cả danh mục <span class="count" th:text="${categoryPage.totalElements}"></span></h2><p>Danh sách được sắp xếp theo tên danh mục.</p></div><span class="status-pill"><span></span> Quản lý nội dung</span></div>
+    <form method="get" th:action="@{/admin/categories}" class="searchbar">
+      <div class="search-field"><label class="visually-hidden" for="name">Tìm theo tên danh mục</label><span aria-hidden="true">⌕</span><input id="name" name="name" th:value="${name}" placeholder="Tìm theo tên danh mục…" class="form-control"></div>
+      <input type="hidden" name="page" value="1"><input type="hidden" name="size" th:value="${categoryPage.size}">
+      <button class="btn btn-dark" type="submit">Tìm kiếm</button><a th:if="${!name.isEmpty()}" th:href="@{/admin/categories(size=${categoryPage.size})}" class="btn btn-light">Xóa bộ lọc</a>
+    </form>
+    <div class="table-responsive" th:if="${categoryPage.hasContent()}"><table class="table align-middle mb-0">
+      <thead><tr><th class="id-column" scope="col">MÃ DANH MỤC</th><th scope="col">TÊN DANH MỤC</th><th scope="col" class="text-end">THAO TÁC</th></tr></thead>
+      <tbody><tr th:each="category : ${categoryPage.content}"><td><span class="category-id" th:text="${'#' + category.categoryId}"></span></td><td><a class="category-name" th:href="@{/admin/categories/{id}(id=${category.categoryId})}"><span class="folder-icon" aria-hidden="true">▤</span><span th:text="${category.name}"></span></a></td><td><div class="actions"><a class="action" th:href="@{/admin/categories/{id}(id=${category.categoryId})}">Xem</a><a class="action" th:href="@{/admin/categories/edit/{id}(id=${category.categoryId})}">Sửa</a><form method="post" th:action="@{/admin/categories/delete/{id}(id=${category.categoryId})}" data-delete-form th:attr="data-category=${category.name}"><button class="action action-danger" type="submit">Xóa</button></form></div></td></tr></tbody>
+    </table></div>
+    <div th:unless="${categoryPage.hasContent()}" class="empty-state"><div aria-hidden="true">⌕</div><h3 th:text="${name.isEmpty() ? 'Chưa có danh mục nào' : 'Không tìm thấy danh mục'}"></h3><p th:text="${name.isEmpty() ? 'Thêm danh mục đầu tiên để bắt đầu.' : 'Thử một từ khóa khác hoặc xóa bộ lọc tìm kiếm.'}"></p></div>
+    <div class="table-bottom"><form method="get" th:action="@{/admin/categories}" class="page-size"><input type="hidden" name="name" th:value="${name}"><input type="hidden" name="page" value="1"><label for="size">Hiển thị</label><select id="size" name="size" class="form-select"><option th:each="n : ${ {5,10,20} }" th:value="${n}" th:text="${n}" th:selected="${n == categoryPage.size}"></option></select><button class="btn btn-sm btn-light" type="submit">Áp dụng</button><span class="result-count" th:text="${categoryPage.totalElements + ' kết quả'}"></span></form>
+    <nav th:if="${categoryPage.totalPages > 0}" aria-label="Phân trang"><ul class="pagination mb-0">
+      <li class="page-item" th:classappend="${categoryPage.first} ? 'disabled'"><a class="page-link" th:href="@{/admin/categories(name=${name},page=1,size=${categoryPage.size})}" th:attr="aria-disabled=${categoryPage.first}">Đầu</a></li>
+      <li class="page-item" th:each="n : ${pageNumbers}" th:classappend="${n == categoryPage.number + 1} ? 'active'"><a class="page-link" th:href="@{/admin/categories(name=${name},page=${n},size=${categoryPage.size})}" th:text="${n}" th:attr="aria-current=${n == categoryPage.number + 1 ? 'page' : null}"></a></li>
+      <li class="page-item" th:classappend="${categoryPage.last} ? 'disabled'"><a class="page-link" th:href="@{/admin/categories(name=${name},page=${categoryPage.totalPages},size=${categoryPage.size})}" th:attr="aria-disabled=${categoryPage.last}">Cuối</a></li>
+    </ul></nav></div>
+  </section>
+  <p class="page-note">Mỗi danh mục là một cách giúp nội dung của bạn ngăn nắp hơn.</p>
+</main></body></html>

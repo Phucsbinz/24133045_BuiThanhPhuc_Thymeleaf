@@ -1,0 +1,10 @@
+<!doctype html><html lang="vi" xmlns:th="http://www.thymeleaf.org"><body>
+<header th:fragment="header" class="site-header">
+  <a class="skip-link" href="#main-content">Đến nội dung chính</a>
+  <div class="container header-inner">
+    <a th:href="@{/}" class="brand"><span class="brand-icon">C<span>•</span></span><span>Category<span class="brand-light"> Studio</span><small>LẬP TRÌNH WEB / THYMELEAF</small></span></a>
+    <nav aria-label="Điều hướng chính"><a th:href="@{/admin/categories}" class="nav-link-active">Danh mục</a></nav>
+    <div class="student"><div><strong>Bùi Thanh Phúc</strong><small>Sinh viên · 24133045</small></div><img th:src="@{${studentPhoto}}" alt="Ảnh đại diện sinh viên Bùi Thanh Phúc" width="44" height="44"></div>
+  </div>
+</header>
+</body></html>

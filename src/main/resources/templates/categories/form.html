@@ -1,0 +1,14 @@
+<!doctype html><html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head><title th:text="${category.categoryId == null ? 'Thêm danh mục' : 'Sửa danh mục'}"></title></head><body>
+<main layout:fragment="content" class="container page" id="main-content">
+  <a class="back-link" th:href="@{/admin/categories}">← Danh sách danh mục</a>
+  <div class="eyebrow mt-4">QUẢN LÝ DANH MỤC</div><h1 th:text="${category.categoryId == null ? 'Thêm danh mục.' : 'Sửa danh mục.'}"></h1><p class="subtitle">Một tên rõ ràng giúp bạn tìm đúng nội dung nhanh hơn.</p>
+  <section class="workspace form-panel"><form method="post" th:action="@{/admin/categories/saveOrUpdate}" th:object="${category}">
+    <input type="hidden" th:field="*{categoryId}"><div th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}" class="alert alert-danger"></div>
+    <p th:if="*{categoryId != null}" class="category-id" th:text="*{'Mã danh mục: #' + categoryId}"></p>
+    <label for="name" class="form-label">Tên danh mục <span class="text-danger">*</span></label>
+    <input class="form-control form-control-lg" th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'" id="name" th:field="*{name}" maxlength="200" required placeholder="Ví dụ: Sách &amp; văn phòng phẩm" aria-describedby="name-help name-error" autofocus>
+    <div id="name-error" class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><div id="name-help" class="form-text">Tối đa 200 ký tự. Trường có dấu * là bắt buộc.</div>
+    <div class="form-actions"><a class="btn btn-light" th:href="@{/admin/categories}">Hủy</a><button class="btn btn-primary" type="submit" th:text="*{categoryId == null ? 'Tạo danh mục' : 'Lưu thay đổi'}"></button></div>
+  </form></section>
+</main></body></html>
