@@ -66,7 +66,7 @@ class CategoryApplicationTest {
         assertThat(html).contains("&lt;script&gt;").doesNotContain("<script>alert(1)</script>");
         assertThat(html.split("class=\"site-header\"", -1)).hasSize(2);
         assertThat(html.split("class=\"site-footer\"", -1)).hasSize(2);
-        assertThat(html).contains("24133045").contains("/images/student-placeholder.svg");
+        assertThat(html).contains("24133045").contains("/images/student.jpg");
         mvc.perform(get("/admin/categories/add")).andExpect(status().isOk());
     }
     @Test void missingIdsCannotCreateOrDeleteOtherRows() throws Exception {

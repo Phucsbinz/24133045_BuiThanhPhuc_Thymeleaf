@@ -45,15 +45,15 @@ Trên macOS/Linux dùng `./mvnw clean verify` sau khi đặt các biến môi tr
 
 Không commit mật khẩu thật. `ddl-auto=validate` chỉ kiểm tra schema; ứng dụng không tự xóa/tạo lại bảng khi khởi động. Database lưu dữ liệu qua các lần chạy.
 
-## Bổ sung ảnh sinh viên trước khi nộp
+## Ảnh sinh viên
 
-Header hiện dùng **ảnh đại diện tạm**, chưa phải ảnh cá nhân của sinh viên. Đặt ảnh đã chọn vào `src/main/resources/static/images/student.jpg`, rồi đặt:
+Header đã dùng ảnh cá nhân của sinh viên tại `src/main/resources/static/images/student.jpg`. Ảnh được đóng gói trong JAR và hiển thị mặc định khi clone/build project. Có thể đổi đường dẫn bằng biến môi trường:
 
 ```powershell
 $env:STUDENT_PHOTO = '/images/student.jpg'
 ```
 
-Build lại sau khi thêm ảnh. Để người chấm clone và nhìn thấy ảnh ngay, đổi giá trị mặc định `app.student-photo` trong `application.properties` thành `/images/student.jpg` và commit ảnh cùng cấu hình. Footer đã có họ tên và MSSV.
+Build lại sau khi thay file ảnh. Footer có họ tên và MSSV.
 
 ## Chức năng và URL
 
@@ -100,8 +100,8 @@ Phần tổ chức Repository/Service/Controller tham khảo bài BT05; bài nà
 
 `./mvnw clean verify` chạy 6 kịch bản tích hợp: CRUD/tiếng Việt, validation, tìm kiếm/phân trang/đầu vào bất thường, layout/escape HTML, mã không tồn tại, database rỗng/xóa mục cuối trang. MockMvc render template thật với Thymeleaf Layout Dialect.
 
-Đã kiểm tra: `mvn clean verify` thành công (6 tests, 0 failures/errors), JAR chạy với MySQL 8.0.44 và HTTP CRUD/tiếng Việt/layout/tài nguyên tĩnh thành công. Chưa kiểm tra bố cục bằng trình duyệt và chưa bổ sung ảnh cá nhân thật.
+Đã kiểm tra: `mvn clean verify` thành công (6 tests, 0 failures/errors), JAR chạy với MySQL 8.0.44 và HTTP CRUD/tiếng Việt/layout/tài nguyên tĩnh thành công. Đã bổ sung ảnh cá nhân thật; chưa kiểm tra bố cục bằng trình duyệt.
 
-Trước khi nộp: thêm ảnh cá nhân, mở danh sách và form trên trình duyệt máy tính/điện thoại, kiểm tra header-footer và xác nhận xóa. Chụp màn hình danh sách, form và tìm kiếm để minh họa README nếu cần. Kiểm tra repository public truy cập được, rồi nộp link GitHub vào đúng bài tập UTeXLMS.
+Trước khi nộp: mở danh sách và form trên trình duyệt máy tính/điện thoại, kiểm tra header-footer và xác nhận xóa. Chụp màn hình danh sách, form và tìm kiếm để minh họa README nếu cần. Kiểm tra repository public truy cập được, rồi nộp link GitHub vào đúng bài tập UTeXLMS.
 
 Bootstrap phân phối theo MIT License; thông tin bản quyền giữ trong đầu file CSS.
