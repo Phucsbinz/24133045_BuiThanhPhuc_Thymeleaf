@@ -3,6 +3,8 @@
 **Sinh viên:** Bùi Thanh Phúc · **MSSV:** 24133045  
 **Môn học:** Lập trình Web · HCMUTE
 
+**GitHub:** https://github.com/Phucsbinz/24133045_BuiThanhPhuc_Thymeleaf
+
 Ứng dụng Spring Boot quản lý danh mục với CRUD, tìm kiếm theo tên và phân trang tại database. Giao diện Thymeleaf dùng Layout Dialect để tái sử dụng header, content và footer.
 
 ## Công nghệ
@@ -97,6 +99,8 @@ Phần tổ chức Repository/Service/Controller tham khảo bài BT05; bài nà
 ## Kiểm thử và nộp bài
 
 `./mvnw clean verify` chạy 6 kịch bản tích hợp: CRUD/tiếng Việt, validation, tìm kiếm/phân trang/đầu vào bất thường, layout/escape HTML, mã không tồn tại, database rỗng/xóa mục cuối trang. MockMvc render template thật với Thymeleaf Layout Dialect.
+
+Đã kiểm tra: `mvn clean verify` thành công (6 tests, 0 failures/errors), JAR chạy với MySQL 8.0.44 và HTTP CRUD/tiếng Việt/layout/tài nguyên tĩnh thành công. Chưa kiểm tra bố cục bằng trình duyệt và chưa bổ sung ảnh cá nhân thật.
 
 Trước khi nộp: thêm ảnh cá nhân, mở danh sách và form trên trình duyệt máy tính/điện thoại, kiểm tra header-footer và xác nhận xóa. Chụp màn hình danh sách, form và tìm kiếm để minh họa README nếu cần. Kiểm tra repository public truy cập được, rồi nộp link GitHub vào đúng bài tập UTeXLMS.
 
